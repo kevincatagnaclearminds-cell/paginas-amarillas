@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Gym • Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <!-- LOGIN -->
+    <section id="loginView" class="login card">
+      <div class="login-container">
+        <div class="login-left">
+          <div class="brand brand-lg">
+            <div class="logo">
+              <img
+                src="https://i.postimg.cc/gJ1CkzFn/imagen-2025-08-10-181755691-removebg-preview.png"
+                alt="Admin Gym Logo"
+                style="width: 300px; height: 300px; object-fit: contain"
+              />
+            </div>
+          </div>
+
+          <div style="text-align: center">
+            <h2
+              style="
+                margin: 0 0 0rem 0;
+                color: #2c3e50;
+                font-weight: 700;
+                font-size: 2.5rem;
+              "
+            >
+              Bienvenido
+            </h2>
+            <p
+              style="
+                margin: 0;
+                color: #34495e;
+                font-size: 1.5rem;
+                font-weight: 400;
+                line-height: 1.8;
+              "
+            >
+              Accede a tu panel de administración<br />
+              y gestiona tu gimnasio de manera eficiente<br />
+              con herramientas modernas y profesionales
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="login-right"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div style="text-align: center; margin-bottom: 3rem">
+            <h3
+              style="
+                margin: 0 0 1rem 0;
+                color: #2c3e50;
+                font-weight: 700;
+                font-size: 1.8rem;
+              "
+            >
+              Iniciar Sesión
+            </h3>
+            <p
+              style="
+                margin: 0;
+                color: #34495e;
+                font-size: 1rem;
+                font-weight: 400;
+              "
+            >
+              Ingresa tus credenciales para continuar
+            </p>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 1.5rem;
+              width: 100%;
+              max-width: 350px;
+            "
+          >
+            <div style="position: relative; width: 100%">
+              <input
+                id="loginEmail"
+                class="input"
+                type="email"
+                placeholder="Correo electrónico"
+                value="admin@gym.com"
+                style="
+                  width: 100%;
+                  padding: 1rem 1rem 1rem 3rem;
+                  border-radius: 12px;
+                  border: 2px solid rgba(218, 131, 224, 0.3);
+                  background: rgba(255, 255, 255, 0.9);
+                  font-size: 1rem;
+                  color: #2c3e50;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                  backdrop-filter: blur(10px);
+                "
+              />
+              <svg
+                style="
+                  position: absolute;
+                  left: 1rem;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 20px;
+                  height: 20px;
+                  color: var(--brand);
+                "
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                ></path>
+              </svg>
+            </div>
+
+            <div style="position: relative; width: 100%">
+              <input
+                id="loginPass"
+                class="input"
+                type="password"
+                placeholder="Contraseña"
+                value="admin123"
+                style="
+                  width: 100%;
+                  padding: 1rem 1rem 1rem 3rem;
+                  border-radius: 12px;
+                  border: 2px solid rgba(218, 131, 224, 0.3);
+                  background: rgba(255, 255, 255, 0.9);
+                  font-size: 1rem;
+                  color: #2c3e50;
+                  transition: all 0.3s ease;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                  backdrop-filter: blur(10px);
+                "
+              />
+              <svg
+                style="
+                  position: absolute;
+                  left: 1rem;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 20px;
+                  height: 20px;
+                  color: var(--brand);
+                "
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                ></path>
+              </svg>
+            </div>
+
+            <button
+              class="btn primary"
+              onclick="doLogin()"
+              style="
+                width: 100%;
+                padding: 1rem 2rem;
+                border-radius: 12px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                background: linear-gradient(
+                  135deg,
+                  var(--brand) 0%,
+                  #ff6b9d 100%
+                );
+                border: none;
+                box-shadow: 0 8px 25px rgba(218, 131, 224, 0.4);
+                transition: all 0.3s ease;
+                margin-top: 0.5rem;
+                color: white;
+              "
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin-top: 2rem;
+              padding: 1.5rem;
+              background: rgba(255, 255, 255, 0.8);
+              border-radius: 12px;
+              border: 1px solid rgba(218, 131, 224, 0.2);
+              backdrop-filter: blur(10px);
+              width: 100%;
+              max-width: 350px;
+            "
+          >
+            <p
+              style="
+                margin: 0;
+                color: #34495e;
+                font-size: 0.95rem;
+                font-weight: 500;
+              "
+            >
+              <strong style="color: var(--brand)">Demo:</strong> admin@gym.com /
+              admin123
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP LAYOUT -->
+    <section id="appView" class="hidden">
+      <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+      <div class="layout">
+        <aside class="sidebar closed">
+          <div class="brand">
+            <div class="logo">
+              <img
+                src="https://i.postimg.cc/gJ1CkzFn/imagen-2025-08-10-181755691-removebg-preview.png"
+                alt="GYM Admin"
+                style="width: 80px; height: 60px"
+              />
+            </div>
+            <button class="menu-toggle" onclick="toggleSidebar()">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 12H21M3 6H21M3 18H21"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <nav id="menu"></nav>
+          <div class="sep"></div>
+          <button class="btn ghost" onclick="logout()">Cerrar sesión</button>
+        </aside>
+
+        <main class="content">
+          <div
+            class="topbar"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <div class="row kpi">
+              <span class="pill" id="todayInfo"></span>
+            </div>
+
+            <div
+              class="row kpi"
+              style="display: flex; align-items: center; gap: 1rem"
+            >
+              <!-- Selector de Sucursal -->
+              <div class="sucursal-selector" style="position: relative">
+                <button
+                  class="sucursal-btn"
+                  onclick="toggleSucursalDropdown()"
+                  style="
+                    background: var(--panel);
+                    border: 1px solid var(--muted);
+                    border-radius: 8px;
+                    padding: 0.5rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    cursor: pointer;
+                    color: var(--text);
+                    font-weight: 600;
+                    transition: all 0.2s ease;
+                    min-width: 150px;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="10"
+                      r="3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span id="sucursalActual">Matriz</span>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6 9L12 15L18 9"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <div
+                  id="sucursalDropdown"
+                  class="sucursal-dropdown"
+                  style="
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    background: white;
+                    border: 1px solid var(--muted);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    min-width: 200px;
+                    z-index: 1000;
+                    display: none;
+                    margin-top: 0.5rem;
+                  "
+                >
+                  <div style="padding: 0.5rem">
+                    <div
+                      style="
+                        font-size: 0.8rem;
+                        color: var(--sub);
+                        padding: 0.5rem;
+                        border-bottom: 1px solid var(--muted);
+                        margin-bottom: 0.5rem;
+                      "
+                    >
+                      Seleccionar Sucursal
+                    </div>
+                    <div class="sucursal-options">
+                      <div
+                        class="sucursal-option"
+                        onclick="cambiarSucursal('Matriz')"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 0.5rem;
+                          padding: 0.8rem;
+                          border-radius: 6px;
+                          cursor: pointer;
+                          transition: all 0.2s ease;
+                        "
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <circle
+                            cx="12"
+                            cy="10"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        <span>Matriz</span>
+                      </div>
+                      <div
+                        class="sucursal-option"
+                        onclick="cambiarSucursal('Ponciano')"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 0.5rem;
+                          padding: 0.8rem;
+                          border-radius: 6px;
+                          cursor: pointer;
+                          transition: all 0.2s ease;
+                        "
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <circle
+                            cx="12"
+                            cy="10"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        <span>Ponciano</span>
+                      </div>
+                      <div
+                        class="sucursal-option"
+                        onclick="cambiarSucursal('QT')"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 0.5rem;
+                          padding: 0.8rem;
+                          border-radius: 6px;
+                          cursor: pointer;
+                          transition: all 0.2s ease;
+                        "
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <circle
+                            cx="12"
+                            cy="10"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        <span>QT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botón Recargar Datos -->
+              <button
+                onclick="limpiarDatosYRecargar()"
+                style="
+                  background: var(--danger);
+                  color: white;
+                  border: none;
+                  padding: 0.5rem 1rem;
+                  border-radius: 6px;
+                  cursor: pointer;
+                  font-size: 0.8rem;
+                "
+                title="Limpiar datos y recargar (para ver nuevos clientes)"
+              >
+                🔄 Recargar Datos
+              </button>
+            </div>
+          </div>
+
+          <!-- DASHBOARD TABS RENDER -->
+          <div id="viewRoot" class="grid"></div>
+
+          <footer class="footer muted mini">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+              "
+            >
+              <div>Dashboard Gym • Sistema de Administración</div>
+              <div style="display: flex; gap: 1rem; align-items: center">
+                <span style="color: var(--text)">●</span>
+                <span>Datos locales</span>
+                <span style="color: var(--text)">●</span>
+                <span>Sin backend</span>
+              </div>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </section>
+
+    <!-- Modales -->
+    <div id="modals-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
