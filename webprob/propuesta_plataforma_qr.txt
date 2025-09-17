@@ -1,0 +1,183 @@
+PROPUESTA TÉCNICA - PLATAFORMA DE ANUNCIOS QR
+===============================================
+
+1. INTRODUCCIÓN
+===============
+
+Nos complace presentar la presente propuesta para el desarrollo de una plataforma propia destinada a facilitar el proceso de promoción y gestión de negocios locales mediante códigos QR, brindando visibilidad y conectividad a los empresarios, quienes podrán realizar una promoción segura y confiable. Este desarrollo permitirá optimizar la gestión, mejorar la experiencia de los usuarios y contar con un sistema moderno, funcional y escalable.
+
+2. ALCANCE DEL PROYECTO
+=======================
+
+El proyecto contempla:
+• Desarrollo de plataforma propia basada en el prototipo previamente generado, mejorándolo según los requerimientos específicos del cliente.
+• Revisiones periódicas semanales para evaluar avances, recibir retroalimentación y aprobar entregables parciales.
+• Implementación en tiendas de aplicaciones (iOS y Android) al finalizar el desarrollo.
+• Integración de apartado de facturación como funcionalidad adicional.
+• Integración de botón de pagos, considerando que se aplicará una retención del 3% al 6% según el proveedor.
+
+3. FUNCIONALIDAD GENERAL
+========================
+
+• Usuarios / Negocios: permiten crear anuncios promocionales con códigos QR personalizados, gestionar su información de contacto, subir galerías de fotos y videos, recibir estadísticas de visitas y gestionar sus paquetes de promoción.
+• Clientes / Consumidores: permiten descubrir negocios locales, ver información detallada, contactar directamente vía WhatsApp, llamar por teléfono, ver ubicaciones en Google Maps y marcar negocios como favoritos.
+• Administración: permite gestionar anuncios, confirmar pagos, supervisar transacciones, moderar contenido y personalizar el servicio según el tipo de negocio.
+
+Esta funcionalidad será afinada en la primera reunión posterior a la firma del contrato para asegurar que cumpla con las expectativas del cliente y se ajuste a los procesos operativos del servicio de promoción de negocios locales.
+
+4. TIEMPO ESTIMADO
+==================
+
+• Desarrollo Backend y Funcionalidades: 2.5 - 3 meses
+• Aplicaciones Móviles (iOS/Android): 2.5 - 3 meses
+• Testing y Optimización: 1 - 2 semanas
+• Implementación en tiendas: 2 - 3 semanas
+• TOTAL DEL PROYECTO: 4 - 5 meses
+
+4.1 DESGLOSE DETALLADO DEL DESARROLLO
+-------------------------------------
+• Backend + Database: 3-4 semanas
+• Sistema de autenticación: 1-2 semanas
+• Generación de códigos QR: 1 semana
+• Sistema de pagos: 2-3 semanas
+• Panel de administración: 2-3 semanas
+• Testing y optimización: 1-2 semanas
+
+4.2 DESARROLLO DE APLICACIONES MÓVILES
+--------------------------------------
+• Desarrollo iOS: 4-6 semanas
+• Desarrollo Android: 4-6 semanas
+• Testing y publicación: 2-3 semanas
+
+5. METODOLOGÍA DE TRABAJO
+=========================
+
+• Fase de desarrollo: mejora del prototipo existente y construcción de funcionalidades adicionales del sistema de códigos QR, panel de administración, sistema de pagos y base de datos.
+• Reuniones semanales: revisión de avances y aprobación parcial de funcionalidades, incluyendo demostraciones del sistema de paquetes premium, integración con Google Maps y funcionalidades de favoritos.
+• Entrega final: se realizará la aprobación definitiva del proyecto por parte del cliente antes de proceder con la implementación web y lanzamiento de la plataforma de páginas amarillas digitales.
+
+6. CARACTERÍSTICAS TÉCNICAS
+===========================
+
+6.1 SISTEMA DE PAQUETES PREMIUM
+-------------------------------
+• Paquete Básico ($150): 4 QRs, 4 anuncios activos, duración 2 semanas
+• Paquete Estándar ($300): 10 QRs, 10 anuncios activos, duración 1 mes
+• Paquete Premium ($450): 16 QRs, 16 anuncios activos, duración 2 meses
+
+6.2 FUNCIONALIDADES PRINCIPALES
+-------------------------------
+• Generación automática de códigos QR personalizados
+• Sistema de galería de imágenes con navegación por puntos
+• Integración con Google Maps para ubicación de negocios
+• Sistema de favoritos con corazones interactivos
+• Botones de contacto directo (WhatsApp, teléfono, email)
+• Estadísticas de visitas y clics
+• Panel de administración completo
+• Sistema de categorías de negocios
+• Búsqueda y filtrado avanzado
+
+6.3 TECNOLOGÍAS IMPLEMENTADAS
+-----------------------------
+• Frontend: HTML5, CSS3, JavaScript ES6+
+• Diseño: Responsive design con Tailwind CSS
+• Iconografía: Remix Icons
+• Mapas: Google Maps API
+• QR: Generación dinámica de códigos QR
+• Animaciones: CSS3 transitions y keyframes
+• Modales: Sistema de ventanas emergentes personalizado
+
+7. ESTRUCTURA DE LA PLATAFORMA
+==============================
+
+7.1 SECCIÓN PRINCIPAL
+---------------------
+• Header con navegación y botón de "Comprar QRs"
+• Categorías de negocios (Boutiques, Carpintería, Comida, etc.)
+• Grid de anuncios con tarjetas interactivas
+• Sistema de filtrado por categorías
+
+7.2 PANEL DE VENDEDOR
+---------------------
+• Selección de paquetes premium
+• Formulario de información del negocio
+• Generación de códigos QR
+• Resumen de compra y confirmación
+
+7.3 MODAL DE DETALLES
+---------------------
+• Galería de imágenes del negocio
+• Información completa de contacto
+• Mapa de ubicación integrado
+• Botones de acción (WhatsApp, llamada, email)
+• Enlace directo a Google Maps
+
+8. BENEFICIOS
+=============
+
+• Plataforma personalizada y a medida según las necesidades del cliente para promoción de negocios locales.
+• Seguridad y confianza para los consumidores en la contratación de servicios locales mediante códigos QR verificados.
+• Mejora en la eficiencia y experiencia del proceso de descubrimiento y contacto con negocios locales.
+• Sistema listo para ser implementado como aplicación web responsive, accesible desde cualquier dispositivo.
+• Seguimiento y control transparente del progreso del proyecto con revisiones periódicas semanales.
+• Propiedad total del software mediante la entrega del código fuente completo.
+• Funcionalidad completa que abarca negocios, consumidores y administración, optimizando la operación de la plataforma desde todos los niveles.
+• Sistema de paquetes premium escalable que genera ingresos recurrentes para el negocio.
+• Integración con Google Maps para ubicación precisa y navegación directa.
+• Sistema de favoritos y estadísticas que mejora la experiencia del usuario.
+• Tecnología QR moderna que conecta el mundo físico con el digital.
+• Panel de administración completo para gestión eficiente de anuncios y usuarios.
+• Diseño responsive que funciona perfectamente en móviles, tablets y computadoras.
+• Sistema de pagos integrado con retención automática del 3% al 6% según el proveedor.
+
+9. PROCESO DE DESARROLLO
+========================
+
+9.1 FASES DEL PROYECTO
+----------------------
+• Fase 1: Análisis y diseño detallado
+• Fase 2: Desarrollo del frontend
+• Fase 3: Integración de APIs y servicios
+• Fase 4: Testing y optimización
+• Fase 5: Despliegue y lanzamiento
+
+9.2 ENTREGABLES
+---------------
+• Código fuente completo
+• Documentación técnica
+• Manual de usuario
+• Aplicaciones móviles (iOS/Android)
+• Sistema de facturación integrado
+
+10. CONSIDERACIONES TÉCNICAS
+============================
+
+10.1 ESCALABILIDAD
+------------------
+• Arquitectura modular y extensible
+• Base de datos optimizada para crecimiento
+• Sistema de caché para mejor rendimiento
+• CDN para entrega de contenido
+
+10.2 SEGURIDAD
+--------------
+• Validación de datos en frontend y backend
+• Encriptación de información sensible
+• Sistema de autenticación seguro
+• Protección contra ataques comunes
+
+11. MANTENIMIENTO Y SOPORTE
+===========================
+
+• Soporte técnico 24/7
+• Actualizaciones regulares del sistema
+• Monitoreo de rendimiento
+• Backup automático de datos
+• Escalabilidad según demanda
+
+12. CONCLUSIÓN
+==============
+
+Esta plataforma representa una solución integral para la promoción de negocios locales mediante tecnología QR, ofreciendo una experiencia moderna, intuitiva y funcional tanto para empresarios como para consumidores. El sistema está diseñado para ser escalable, mantenible y adaptable a las necesidades futuras del mercado.
+
+La implementación de esta propuesta permitirá establecer una presencia digital sólida en el mercado de promoción local, generando valor tanto para los negocios participantes como para los consumidores que buscan servicios y productos de calidad en su área local.

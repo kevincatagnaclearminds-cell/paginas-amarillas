@@ -1,0 +1,101 @@
+/* Estilos simples para el menú hamburguesa */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background: #111;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger-menu:hover span {
+    background: #FFD700;
+}
+
+/* Menú lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.side-menu.active {
+    left: 0 !important;
+}
+
+.menu-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-header h3 {
+    color: #111;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #111;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-content {
+    padding: 1rem 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #111;
+    font-weight: 600;
+}
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.menu-item.active {
+    background: rgba(255,255,255,0.3);
+    border-right: 3px solid #111;
+}
+
+.menu-item i {
+    font-size: 1.2rem;
+}
+
+/* Asegurar que el menú esté visible cuando esté activo */
+.side-menu.active {
+    left: 0 !important;
+    display: block !important;
+}

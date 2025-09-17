@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Anunciante - Ruta Amarilla</title>
+    <link rel="stylesheet" href="advertiser-page.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-content">
+            <div class="topbar-left">
+                <div class="hamburger-menu" onclick="toggleMenu()" style="display: flex; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001;">
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                </div>
+                <div class="topbar-brand">Ruta Amarilla</div>
+            </div>
+            <div class="topbar-actions">
+                <a href="#" class="topbar-btn" onclick="scrollToHelp()">
+                    <i class="ri-question-line"></i>
+                    Ayuda
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- MENÚ LATERAL NUEVO Y FUNCIONAL -->
+        <div id="sideMenu" style="position: fixed; top: 0; left: -300px; width: 300px; height: 100vh; background: #FFD700; z-index: 9999; transition: left 0.3s ease; box-shadow: 2px 0 10px rgba(0,0,0,0.3); display: block;">
+            <div style="padding: 2rem 1.5rem; border-bottom: 2px solid rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #111; font-size: 1.5rem; font-weight: 700; margin: 0;">Ruta Amarilla</h3>
+                <button onclick="toggleMenu()" style="background: none; border: none; font-size: 2rem; color: #111; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">×</button>
+            </div>
+            <div style="padding: 1rem 0;">
+                <div onclick="window.location.href='web.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600;">
+                    <i class="ri-user-line" style="font-size: 1.2rem;"></i>
+                    <span>Cliente</span>
+                </div>
+                <div onclick="window.location.href='advertiser-page.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600; background: rgba(255,255,255,0.5); border-right: 3px solid #111;">
+                    <i class="ri-store-line" style="font-size: 1.2rem;"></i>
+                    <span>Anunciante</span>
+                </div>
+                <div onclick="window.location.href='sales-panel.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600;">
+                    <i class="ri-bar-chart-line" style="font-size: 1.2rem;"></i>
+                    <span>Panel de Ventas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="advertiser-container">
+        <!-- Encabezado de la página -->
+        <div class="page-header">
+            <h1 class="page-title">Panel de Anunciante</h1>
+            <p class="page-subtitle">Publica tu negocio en Ruta Amarilla</p>
+        </div>
+
+        <!-- Título principal -->
+        <h2 class="main-title">📢 Crear Anuncio</h2>
+
+        <!-- Progreso de pasos -->
+        <div class="steps-progress">
+            <div class="step-item active">
+                <div class="step-icon">🔑</div>
+                <div class="step-number">1</div>
+                <div class="step-title">Código QR</div>
+            </div>
+            <div class="step-item inactive">
+                <div class="step-icon">📋</div>
+                <div class="step-number">2</div>
+                <div class="step-title">Información</div>
+            </div>
+            <div class="step-item inactive">
+                <div class="step-icon">📞</div>
+                <div class="step-number">3</div>
+                <div class="step-title">Contacto</div>
+            </div>
+            <div class="step-item inactive">
+                <div class="step-icon">📸</div>
+                <div class="step-number">4</div>
+                <div class="step-title">Imágenes</div>
+            </div>
+        </div>
+
+        <!-- Formulario del Paso 1 -->
+        <div id="step-1" class="form-container">
+            <h3 class="form-title">🔑 Ingresa tu Código QR</h3>
+            <p class="form-description">Introduce el código QR que compraste para crear tu anuncio</p>
+            
+            <div class="form-group">
+                <label class="form-label">Código QR:</label>
+                <input type="text" id="qr-code" class="form-input" placeholder="QR_XXXXXXXXXXXXXXX" required>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-continue" onclick="nextStep()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- Formulario del Paso 2 -->
+        <div id="step-2" class="form-container" style="display: none;">
+            <h3 class="form-title">📋 Información del Negocio</h3>
+            <p class="form-description">Completa la información básica de tu negocio</p>
+            
+            <div class="form-group">
+                <label class="form-label">Nombre del negocio:</label>
+                <input type="text" id="business-name" class="form-input" placeholder="Mi Boutique Elegante" required>
+                <div class="form-error" id="name-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Nombre del negocio requerido</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Categoría:</label>
+                <select id="business-category" class="form-input" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="Moda 👗">Moda 👗</option>
+                    <option value="Artesanía 🛠️">Artesanía 🛠️</option>
+                    <option value="Gastronomía 🍽️">Gastronomía 🍽️</option>
+                    <option value="Servicios 🧰">Servicios 🧰</option>
+                    <option value="Salud 🏥">Salud 🏥</option>
+                    <option value="Educación 📚">Educación 📚</option>
+                    <option value="Tecnología 💻">Tecnología 💻</option>
+                    <option value="Turismo ✈️">Turismo ✈️</option>
+                    <option value="Belleza 💅">Belleza 💅</option>
+                    <option value="Inmobiliaria 🏠">Inmobiliaria 🏠</option>
+                </select>
+                <div class="form-error" id="category-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Categoría requerida</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Descripción:</label>
+                <textarea id="business-description" class="form-input" placeholder="Describe tu negocio, productos o servicios..." rows="4" required></textarea>
+                <div class="form-error" id="description-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Descripción requerida</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Dirección:</label>
+                <input type="text" id="business-address" class="form-input" placeholder="Av. Amazonas 123, Quito, Ecuador" required>
+                <div class="form-error" id="address-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Dirección requerida</div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-prev" onclick="prevStep()">Anterior</button>
+                <button class="btn-continue" onclick="nextStep()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- Formulario del Paso 3 -->
+        <div id="step-3" class="form-container" style="display: none;">
+            <h3 class="form-title">📞 Información de Contacto</h3>
+            <p class="form-description">Proporciona tus datos de contacto para que los clientes puedan comunicarse contigo</p>
+            
+            <div class="form-group">
+                <label class="form-label">Teléfono:</label>
+                <input type="tel" id="business-phone" class="form-input" placeholder="+593 99 123 4567" required>
+                <div class="form-error" id="phone-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Teléfono requerido</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">WhatsApp:</label>
+                <input type="tel" id="business-whatsapp" class="form-input" placeholder="+593 99 123 4567">
+                <small class="form-help">Opcional - Para contacto directo</small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email:</label>
+                <input type="email" id="business-email" class="form-input" placeholder="contacto@miboutique.com" required>
+                <div class="form-error" id="email-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Email requerido</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Sitio Web:</label>
+                <input type="url" id="business-website" class="form-input" placeholder="https://www.miboutique.com">
+                <small class="form-help">Opcional - Si tienes página web</small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Facebook:</label>
+                <input type="url" id="business-facebook" class="form-input" placeholder="https://facebook.com/miboutique">
+                <small class="form-help">Opcional - Enlace a tu página de Facebook</small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Instagram:</label>
+                <input type="url" id="business-instagram" class="form-input" placeholder="https://instagram.com/miboutique">
+                <small class="form-help">Opcional - Enlace a tu perfil de Instagram</small>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">TikTok:</label>
+                <input type="url" id="business-tiktok" class="form-input" placeholder="https://tiktok.com/@miboutique">
+                <small class="form-help">Opcional - Enlace a tu perfil de TikTok</small>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-prev" onclick="prevStep()">Anterior</button>
+                <button class="btn-continue" onclick="nextStep()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- Formulario del Paso 4 -->
+        <div id="step-4" class="form-container" style="display: none;">
+            <h3 class="form-title">📸 Imágenes del Negocio</h3>
+            <p class="form-description">Agrega imágenes de tu negocio para que los clientes puedan ver lo que ofreces</p>
+            
+            <div class="form-group">
+                <label class="form-label">Seleccionar Imágenes:</label>
+                <div class="image-upload-area" onclick="document.getElementById('image-input').click()">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">Haz clic para seleccionar imágenes</div>
+                    <div class="upload-subtext">Mínimo 3 imágenes • Máximo 8 • Formatos: JPG, PNG, GIF</div>
+                    <div class="upload-hint">💡 Puedes hacer clic múltiples veces para agregar más imágenes</div>
+                </div>
+                <input type="file" id="image-input" multiple accept="image/*" style="display: none;" onchange="handleImageSelection(event)">
+                <div class="form-error" id="image-error" style="display: none; color: #e74c3c; font-size: 0.9rem; margin-top: 0.5rem;">Debes seleccionar mínimo 3 y máximo 8 imágenes</div>
+            </div>
+
+            <div class="selected-images" id="selected-images" style="display: none;">
+                <h4 class="images-title">Imágenes Seleccionadas:</h4>
+                <div class="images-grid" id="images-grid"></div>
+                <div class="image-count">
+                    <span id="image-count">0</span> de <span id="max-images">8</span> imágenes permitidas
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-prev" onclick="prevStep()">Anterior</button>
+                <button class="btn-continue" onclick="nextStep()">🚀 Crear Anuncio</button>
+            </div>
+        </div>
+
+        <!-- ===== SECCIONES DE AYUDA ABAJO ===== -->
+        
+                 <!-- Sección de Ayuda del Sistema QR - Diseño Visual Mejorado -->
+         <div class="qr-help-section">
+             <h4 class="help-title">💡 ¿Cómo funciona nuestro sistema QR?</h4>
+             
+                           <!-- Diseño visual con imagen QR como watermark de fondo -->
+              <div class="qr-visual-layout">
+                  <!-- Imagen de agua QR como fondo -->
+                  <div class="qr-watermark-bg">
+                      <img src="qr2.png" alt="Código QR de fondo" class="qr-watermark-image">
+                  </div>
+                  
+                  <!-- Columna izquierda con características -->
+                  <div class="qr-left-features">
+                      <div class="feature-card left-top">
+                          <div class="feature-icon">🔐</div>
+                          <div class="feature-content">
+                              <h5>Seguridad Garantizada</h5>
+                              <p>Cada código QR es único y personalizado, garantizando que solo tú puedas crear anuncios con tu código específico.</p>
+                          </div>
+                      </div>
+                      
+                      <div class="feature-card left-bottom">
+                          <div class="feature-icon">📱</div>
+                          <div class="feature-content">
+                              <h5>Fácil de Usar</h5>
+                              <p>Simplemente ingresa tu código QR y sigue los pasos para crear tu anuncio de negocio en minutos.</p>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Columna derecha con características -->
+                  <div class="qr-right-features">
+                      <div class="feature-card right-top">
+                          <div class="feature-icon">🎯</div>
+                          <div class="feature-content">
+                              <h5>Verificación Automática</h5>
+                              <p>Nuestro sistema valida automáticamente tu código QR para asegurar que sea válido y esté activo.</p>
+                          </div>
+                      </div>
+                      
+                      <div class="feature-card right-bottom">
+                          <div class="feature-icon">🚀</div>
+                          <div class="feature-content">
+                              <h5>Publicación Inmediata</h5>
+                              <p>Una vez completado el proceso, tu negocio será visible en Ruta Amarilla de forma inmediata.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+         </div>
+
+        <!-- Sección de Beneficios de Anunciar -->
+        <div class="advertising-section">
+            <h4 class="advertising-title">📢 ¿Quieres anunciar tu negocio?</h4>
+            <div class="advertising-content">
+                <div class="advertising-point">
+                    <div class="advertising-icon">📞</div>
+                    <div class="advertising-text">
+                        <h5>¡CONTACTANOS YA!</h5>
+                        <p>¿Tienes preguntas sobre nuestros códigos QR? ¡Escríbenos por WhatsApp y te ayudamos!</p>
+                        <button class="whatsapp-contact-btn" onclick="contactWhatsApp()">
+                            <i class="ri-whatsapp-fill"></i>
+                            ¡CONTACTANOS YA!
+                        </button>
+                    </div>
+                </div>
+                <div class="advertising-point">
+                    <div class="advertising-icon">📊</div>
+                    <div class="advertising-text">
+                        <h5>Estadísticas en Tiempo Real</h5>
+                        <p>Accede a estadísticas de visitas y contactos de clientes interesados en tu negocio.</p>
+                    </div>
+                </div>
+                
+                <div class="advertising-point">
+                    <div class="advertising-icon">🎯</div>
+                    <div class="advertising-text">
+                        <h5>Alcance Local</h5>
+                        <p>Tu negocio será visible para clientes en tu área local que buscan tus productos o servicios.</p>
+                    </div>
+                </div>
+                
+                <div class="advertising-point">
+                    <div class="advertising-icon">💼</div>
+                    <div class="advertising-text">
+                        <h5>Perfil Profesional</h5>
+                        <p>Crea un perfil completo con fotos, descripción y toda la información de contacto.</p>
+                    </div>
+                </div>
+                
+                <div class="advertising-point">
+                    <div class="advertising-icon">🚀</div>
+                    <div class="advertising-text">
+                        <h5>Crecimiento del Negocio</h5>
+                        <p>Atrae más clientes y aumenta las ventas de tu negocio con nuestra plataforma.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+    <!-- Modal de Anuncio Subido con Éxito -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✅ Tu anuncio fue publicado con éxito</h2>
+            </div>
+            <div class="modal-body">
+                <p>¡Listo! Tu anuncio ya está visible para todos los clientes en Ruta Amarilla.</p>
+                <p>Puedes crear otro anuncio ingresando un nuevo código QR.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para el menú hamburguesa
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            if (sideMenu.style.left === '0px') {
+                sideMenu.style.left = '-300px';
+            } else {
+                sideMenu.style.left = '0px';
+            }
+        }
+
+        function scrollToHelp() {
+            const helpSection = document.querySelector('.qr-help-section');
+            if (helpSection) {
+                helpSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function contactWhatsApp() {
+            const phoneNumber = '593990000000';
+            const message = encodeURIComponent('¡Hola! Quiero anunciar mi negocio en Ruta Amarilla. ¿Me pueden dar más información sobre los códigos QR?');
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        let currentStep = 1;
+        
+        function nextStep() {
+            if (currentStep === 1) {
+                const qrCode = document.getElementById('qr-code').value;
+                if (qrCode && qrCode.trim() !== '') {
+                    document.getElementById('step-1').style.display = 'none';
+                    document.getElementById('step-2').style.display = 'block';
+                    currentStep = 2;
+                    updateStepIndicators();
+                } else {
+                    alert('❌ Por favor, ingresa un código QR válido');
+                }
+            } else if (currentStep === 2) {
+                if (validateStep2()) {
+                    document.getElementById('step-2').style.display = 'none';
+                    document.getElementById('step-3').style.display = 'block';
+                    currentStep = 3;
+                    updateStepIndicators();
+                }
+            } else if (currentStep === 3) {
+                if (validateStep3()) {
+                    document.getElementById('step-3').style.display = 'none';
+                    document.getElementById('step-4').style.display = 'block';
+                    currentStep = 4;
+                    updateStepIndicators();
+                }
+            } else if (currentStep === 4) {
+                if (validateStep4()) {
+                    createAdvertisement();
+                }
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep === 2) {
+                document.getElementById('step-2').style.display = 'none';
+                document.getElementById('step-1').style.display = 'block';
+                currentStep = 1;
+                updateStepIndicators();
+            } else if (currentStep === 3) {
+                document.getElementById('step-3').style.display = 'none';
+                document.getElementById('step-2').style.display = 'block';
+                currentStep = 2;
+                updateStepIndicators();
+            } else if (currentStep === 4) {
+                document.getElementById('step-4').style.display = 'none';
+                document.getElementById('step-3').style.display = 'block';
+                currentStep = 3;
+                updateStepIndicators();
+            }
+        }
+        
+        function validateStep2() {
+            let isValid = true;
+            
+            const businessName = document.getElementById('business-name').value;
+            if (!businessName || businessName.trim() === '') {
+                showError('name-error');
+                isValid = false;
+            } else {
+                hideError('name-error');
+            }
+            
+            const businessCategory = document.getElementById('business-category').value;
+            if (!businessCategory) {
+                showError('category-error');
+                isValid = false;
+            } else {
+                hideError('category-error');
+            }
+            
+            const businessDescription = document.getElementById('business-description').value;
+            if (!businessDescription || businessDescription.trim() === '') {
+                showError('description-error');
+                isValid = false;
+            } else {
+                hideError('description-error');
+            }
+            
+            const businessAddress = document.getElementById('business-address').value;
+            if (!businessAddress || businessAddress.trim() === '') {
+                showError('address-error');
+                isValid = false;
+            } else {
+                hideError('address-error');
+            }
+            
+            return isValid;
+        }
+        
+        function validateStep3() {
+            let isValid = true;
+            
+            const businessPhone = document.getElementById('business-phone').value;
+            if (!businessPhone || businessPhone.trim() === '') {
+                showError('phone-error');
+                isValid = false;
+            } else {
+                hideError('phone-error');
+            }
+            
+            const businessEmail = document.getElementById('business-email').value;
+            if (!businessEmail || businessEmail.trim() === '') {
+                showError('email-error');
+                isValid = false;
+            } else if (!isValidEmail(businessEmail)) {
+                showError('email-error');
+                document.getElementById('email-error').textContent = 'Email inválido';
+                isValid = false;
+            } else {
+                hideError('email-error');
+            }
+            
+            return isValid;
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        let selectedImages = [];
+        const minImages = 3;
+        const maxImages = 8;
+        
+        function handleImageSelection(event) {
+            const files = event.target.files;
+            let newImages = Array.from(files);
+            const remainingSlots = Math.max(0, maxImages - selectedImages.length);
+            if (newImages.length > remainingSlots) {
+                newImages = newImages.slice(0, remainingSlots);
+                const err = document.getElementById('image-error');
+                if (err) {
+                    err.textContent = `Máximo ${maxImages} imágenes. Se añadieron solo ${remainingSlots}.`;
+                    err.style.display = 'block';
+                }
+            }
+            
+            selectedImages = [...selectedImages, ...newImages];
+            
+            if (selectedImages.length > 0) {
+                displaySelectedImages();
+                hideError('image-error');
+            }
+            
+            event.target.value = '';
+        }
+        
+        function displaySelectedImages() {
+            const imagesGrid = document.getElementById('images-grid');
+            const selectedImagesDiv = document.getElementById('selected-images');
+            const imageCount = document.getElementById('image-count');
+            
+            imagesGrid.innerHTML = '';
+            imageCount.textContent = selectedImages.length;
+            
+            selectedImages.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imagePreview = document.createElement('div');
+                    imagePreview.className = 'image-preview';
+                    imagePreview.innerHTML = `
+                        <img src="${e.target.result}" alt="Imagen ${index + 1}">
+                        <button class="remove-image" onclick="removeImage(${index})">×</button>
+                    `;
+                    imagesGrid.appendChild(imagePreview);
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            selectedImagesDiv.style.display = 'block';
+        }
+        
+        function removeImage(index) {
+            selectedImages.splice(index, 1);
+            if (selectedImages.length > 0) {
+                displaySelectedImages();
+            } else {
+                document.getElementById('selected-images').style.display = 'none';
+            }
+            
+            document.getElementById('image-count').textContent = selectedImages.length;
+        }
+        
+        function validateStep4() {
+            if (selectedImages.length < minImages || selectedImages.length > maxImages) {
+                showError('image-error');
+                return false;
+            } else {
+                hideError('image-error');
+                return true;
+            }
+        }
+        
+        function createAdvertisement() {
+            const advertisementData = {
+                qrCode: document.getElementById('qr-code').value,
+                businessName: document.getElementById('business-name').value,
+                businessCategory: document.getElementById('business-category').value,
+                businessDescription: document.getElementById('business-description').value,
+                businessAddress: document.getElementById('business-address').value,
+                businessPhone: document.getElementById('business-phone').value,
+                businessEmail: document.getElementById('business-email').value,
+                businessWhatsApp: document.getElementById('business-whatsapp').value,
+                businessWebsite: document.getElementById('business-website').value,
+                businessFacebook: document.getElementById('business-facebook').value,
+                businessInstagram: document.getElementById('business-instagram').value,
+                businessTiktok: document.getElementById('business-tiktok').value,
+                businessImages: selectedImages,
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                const dataToStore = {
+                    ...advertisementData,
+                    businessImages: (selectedImages || []).map(img => img.name || 'imagen')
+                };
+                localStorage.setItem('newAdvertisement', JSON.stringify(dataToStore));
+            } catch (e) {
+                console.warn('No se pudo guardar en localStorage, continuando...', e);
+            }
+            
+            // Mostrar modal de éxito inmediatamente
+            showSuccessModal();
+            
+            // Resetear formulario después de mostrar el modal
+            setTimeout(() => {
+                resetForm();
+            }, 100);
+        }
+        
+        function showError(errorId) {
+            document.getElementById(errorId).style.display = 'block';
+        }
+        
+        function hideError(errorId) {
+            document.getElementById(errorId).style.display = 'none';
+        }
+        
+        function updateStepIndicators() {
+            const stepItems = document.querySelectorAll('.step-item');
+            stepItems.forEach((item, index) => {
+                if (index < currentStep) {
+                    item.classList.add('active');
+                    item.classList.remove('inactive');
+                } else {
+                    item.classList.remove('active');
+                    item.classList.add('inactive');
+                }
+            });
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                console.log('Modal mostrado');
+            } else {
+                console.error('Modal no encontrado');
+            }
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            if (modal) {
+            modal.style.display = 'none';
+            }
+            const qrInput = document.getElementById('qr-code');
+            if (qrInput) qrInput.focus();
+        }
+
+        function resetForm() {
+            currentStep = 1;
+            updateStepIndicators();
+            
+            document.getElementById('qr-code').value = '';
+            document.getElementById('business-name').value = '';
+            document.getElementById('business-category').selectedIndex = 0;
+            document.getElementById('business-description').value = '';
+            document.getElementById('business-address').value = '';
+            document.getElementById('business-phone').value = '';
+            document.getElementById('business-email').value = '';
+            document.getElementById('business-whatsapp').value = '';
+            document.getElementById('business-website').value = '';
+            document.getElementById('business-facebook').value = '';
+            document.getElementById('business-instagram').value = '';
+            document.getElementById('business-tiktok').value = '';
+            
+            selectedImages = [];
+            
+            const imagesGrid = document.getElementById('images-grid');
+            const selectedImagesDiv = document.getElementById('selected-images');
+            const imageCount = document.getElementById('image-count');
+            
+            if (imagesGrid) imagesGrid.innerHTML = '';
+            if (selectedImagesDiv) selectedImagesDiv.style.display = 'none';
+            if (imageCount) imageCount.textContent = '0';
+            
+            document.querySelectorAll('.form-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            document.getElementById('step-1').style.display = 'block';
+            
+            document.querySelectorAll('.form-error').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.classList.remove('error');
+            });
+            
+            const imageInput = document.getElementById('image-input');
+            if (imageInput) imageInput.value = '';
+        }
+    </script>
+
+    <footer>
+        <div class="footer-content">
+            <h2 class="footer-title">Ruta Amarilla</h2>
+            <p class="footer-description">Conectando negocios locales con clientes mediante tecnología QR</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="window.location.href='web.html'">Inicio</a>
+                <a href="#" class="footer-link" onclick="contactWhatsApp()">Comprar QRs</a>
+                <a href="#" class="footer-link" onclick="contactWhatsApp()">Contacto</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

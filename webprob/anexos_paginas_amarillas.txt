@@ -1,0 +1,65 @@
+ANEXOS DEL PROTOTIPO - DASHBOARDS (MENÚ HAMBURGUESA)
+
+1. DASHBOARD DE CLIENTE
+Funcionalidades principales:
+- Inicio y exploración:
+  - Búsqueda de negocios desde la barra principal.
+  - Navegación por categorías (boutiques, carpintería, comida, belleza, servicios, salud, educación, tecnología).
+  - Sección de negocios destacados con tarjetas e imágenes.
+- Interacciones de la lista:
+  - Marcado de favoritos desde la tarjeta del negocio.
+  - Galería de imágenes deslizables por negocio.
+- Detalle del negocio:
+  - Apertura de modal con descripción, servicios y datos de contacto.
+  - Visualización de información y medios cuando están disponibles.
+- Ayudas y navegación:
+  - Acceso a opciones del sitio mediante el menú y enlaces del pie de página.
+
+2. DASHBOARD DE ANUNCIANTE
+Funcionalidades principales:
+- Crear anuncio (flujo por pasos):
+  - Paso 1: Ingreso del código/ID del QR para iniciar la creación del anuncio (con validación).
+  - Paso 2: Información del negocio (nombre, categoría, descripción, dirección).
+  - Paso 3: Información de contacto (teléfono, WhatsApp opcional, email obligatorio, sitio web y redes sociales opcionales).
+  - Paso 4: Imágenes del negocio (mínimo 3, máximo 8) con previsualización y conteo.
+- Ayuda sobre el sistema QR:
+  - Sección explicativa con visual y puntos clave (seguridad, facilidad de uso, verificación automática, soporte).
+- Confirmación de publicación:
+  - Mensaje/modal de éxito indicando que el anuncio fue publicado correctamente.
+- Soporte y contacto:
+  - Botón para contactar por WhatsApp para resolver dudas.
+
+3. DASHBOARD DE ADMINISTRADOR (PANEL DE VENTAS)
+Funcionalidades principales:
+- Resumen:
+  - Vista general con indicadores clave de actividad comercial.
+- Gestión de clientes:
+  - Registro de nuevos clientes (nombre, correo, teléfono).
+  - Búsqueda y filtros en la lista de clientes.
+  - Visualización de detalles, edición y eliminación con confirmación (modales dedicados).
+- Generación de códigos QR:
+  - Selección de cliente, paquete y cantidad.
+  - Cálculo automático del total antes de generar.
+  - Confirmación de envío/generación y listado de resultados.
+- Gestión de códigos QR:
+  - Búsqueda por código, cliente, paquete o fecha en el listado global.
+- Estadísticas:
+  - Sección de métricas y visualizaciones de ventas.
+- Notificaciones y validaciones:
+  - Confirmaciones para acciones críticas y mensajes de error/éxito.
+
+FLUJO DE TRABAJO DEL SISTEMA
+- Acceso y navegación:
+  - El usuario abre el menú hamburguesa y elige Cliente, Anunciante o Panel de Ventas según su necesidad.
+- Operativa de Administrador (Panel de Ventas):
+  - Registra clientes y genera códigos QR asociados (definiendo paquete y cantidad).
+  - Consulta listados de clientes y QR, y revisa estadísticas.
+- Operativa de Anunciante:
+  - Ingresa el código/ID de su QR y completa los pasos del formulario.
+  - Adjunta información del negocio, contacto e imágenes, y publica el anuncio.
+  - Recibe confirmación visual de publicación exitosa.
+- Operativa de Cliente:
+  - Explora categorías y negocios destacados, realiza búsquedas y consulta detalles.
+  - Interactúa con tarjetas (favoritos) y visualiza galería e información de contacto.
+- Notificaciones y control:
+  - A lo largo de los flujos, el sistema muestra mensajes de validación, confirmación y errores cuando corresponde.

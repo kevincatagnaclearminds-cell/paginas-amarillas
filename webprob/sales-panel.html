@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Ventas - Ruta Amarilla</title>
+    <link rel="stylesheet" href="sales-panel.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+        <div class="topbar">
+        <div class="topbar-content">
+            <div class="topbar-left">
+                <div class="hamburger-menu" onclick="toggleMenu()" style="display: flex; flex-direction: column; cursor: pointer; padding: 10px; z-index: 1001;">
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #111; margin: 3px 0; transition: 0.3s; border-radius: 2px;"></span>
+                </div>
+                <div class="topbar-brand">Ruta Amarilla</div>
+            </div>
+            <div class="topbar-actions">
+                <button onclick="logoutAdmin()" title="Cerrar sesión" style="background:none; border:none; cursor:pointer; padding:10px;">
+                    <i class="ri-logout-box-r-line" style="font-size: 1.4rem; color:#111;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- MENÚ LATERAL CON TRES OPCIONES -->
+        <div id="sideMenu" style="position: fixed; top: 0; left: -300px; width: 300px; height: 100vh; background: #FFD700; z-index: 9999; transition: left 0.3s ease; box-shadow: 2px 0 10px rgba(0,0,0,0.3); display: block;">
+            <div style="padding: 2rem 1.5rem; border-bottom: 2px solid rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: #111; font-size: 1.5rem; font-weight: 700; margin: 0;">Ruta Amarilla</h3>
+                <button onclick="toggleMenu()" style="background: none; border: none; font-size: 2rem; color: #111; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">×</button>
+            </div>
+            <div style="padding: 1rem 0;">
+                <div onclick="window.location.href='web.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600;">
+                    <i class="ri-user-line" style="font-size: 1.2rem;"></i>
+                    <span>Cliente</span>
+                </div>
+                <div onclick="window.location.href='advertiser-page.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600;">
+                    <i class="ri-store-line" style="font-size: 1.2rem;"></i>
+                    <span>Anunciante</span>
+                </div>
+                <div onclick="window.location.href='sales-panel.html'; toggleMenu();" style="display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.3s ease; color: #111; font-weight: 600; background: rgba(255,255,255,0.5); border-right: 3px solid #111;">
+                    <i class="ri-bar-chart-line" style="font-size: 1.2rem;"></i>
+                    <span>Panel de Ventas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sales-container">
+        <!-- Encabezado de la página -->
+        <div class="page-header">
+            <h1 class="page-title">Panel de Ventas QR</h1>
+            <p class="page-subtitle">Gestiona Clientes y codigos QR</p>
+        </div>
+
+        <!-- Navegación de secciones -->
+        <div class="nav-sections">
+            <button class="nav-btn active" onclick="showSection('resumen')">📊 Resumen</button>
+            <button class="nav-btn" onclick="showSection('vendedores')">👥Clientes</button>
+            <button class="nav-btn" onclick="showSection('generar-qr')">🎫 Generar QRs</button>
+            <button class="nav-btn" onclick="showSection('estadisticas')">📈 Estadísticas</button>
+        </div>
+
+        <!-- SECCIÓN RESUMEN -->
+        <div id="resumen-section" class="section active">
+            <div class="stats-cards">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="ri-qr-code-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">147</h3>
+                        <p class="stat-label">QRs Generados</p>
+                        <span class="stat-change positive">+23</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">8</h3>
+                        <p class="stat-label">Clientes Activos</p>
+                        <span class="stat-change positive">+2</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="ri-package-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">45</h3>
+                        <p class="stat-label">Paquetes Vendidos</p>
+                        <span class="stat-change positive">+12</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card info">
+                    <div class="stat-icon">
+                        <i class="ri-money-dollar-circle-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number">$2,350</h3>
+                        <p class="stat-label">Ingresos Totales</p>
+                        <span class="stat-change positive">+$450</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN VENDEDORES -->
+        <div id="vendedores-section" class="section">
+            <!-- Crear Nuevo Vendedor -->
+            <div class="create-seller-section">
+                <h2 class="section-title">➕ Crear Nuevo Cliente</h2>
+                
+                <div class="seller-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo:</label>
+                            <input type="text" id="seller-name" class="form-input" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email:</label>
+                            <input type="email" id="seller-email" class="form-input" placeholder="juan@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Teléfono:</label>
+                            <input type="tel" id="seller-phone" class="form-input" placeholder="+593 999 999" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn-create-seller" onclick="saveClient()">
+                                <i class="ri-save-3-line"></i>
+                                Guardar Cliente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Clientes Registrados -->
+            <div class="sellers-list-section">
+                <h2 class="section-title">👥 Clientes Registrados</h2>
+                <div style="margin: 0.75rem 0 1rem 0;">
+                    <input type="text" id="clients-search" class="form-input" placeholder="Buscar cliente por nombre, email o teléfono..." oninput="filterClients(this.value)">
+                </div>
+                
+                <div class="qr-table sellers-table">
+                    <div class="table-header">
+                        <div class="header-cell">Cliente</div>
+                        <div class="header-cell">Email</div>
+                        <div class="header-cell">Teléfono</div>
+                        <div class="header-cell">QRs</div>
+                        <div class="header-cell">Paquetes</div>
+                        <div class="header-cell">Acciones</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="cell"><span class="seller-name">Kevin Catagña</span></div>
+                        <div class="cell"><span class="seller-email">kevincata2005@gmail.com</span></div>
+                        <div class="cell"><span class="seller-phone">+593 99 554 7523</span></div>
+                        <div class="cell">12</div>
+                        <div class="cell">6</div>
+                        <div class="cell">
+                            <div class="seller-actions">
+                                <button class="btn-action primary" onclick="viewSellerDetails('kevin1')">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                                <button class="btn-action secondary" onclick="editSeller('kevin1')">
+                                    <i class="ri-edit-line"></i>
+                                </button>
+                                <button class="btn-action danger" onclick="deleteSeller('kevin1')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="cell"><span class="seller-name">María López</span></div>
+                        <div class="cell"><span class="seller-email">urbanka09@gmail.com</span></div>
+                        <div class="cell"><span class="seller-phone">+593 99 554 7523</span></div>
+                        <div class="cell">0</div>
+                        <div class="cell">0</div>
+                        <div class="cell">
+                            <div class="seller-actions">
+                                <button class="btn-action primary" onclick="viewSellerDetails('kevin2')">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                                <button class="btn-action secondary" onclick="editSeller('kevin2')">
+                                    <i class="ri-edit-line"></i>
+                                </button>
+                                <button class="btn-action danger" onclick="deleteSeller('kevin2')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="cell"><span class="seller-name">Kevin Manuel</span></div>
+                        <div class="cell"><span class="seller-email">mirianpila5@gmail.com</span></div>
+                        <div class="cell"><span class="seller-phone">+593 99 554 7523</span></div>
+                        <div class="cell">2</div>
+                        <div class="cell">2</div>
+                        <div class="cell">
+                            <div class="seller-actions">
+                                <button class="btn-action primary" onclick="viewSellerDetails('kevin3')">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                                <button class="btn-action secondary" onclick="editSeller('kevin3')">
+                                    <i class="ri-edit-line"></i>
+                                </button>
+                                <button class="btn-action danger" onclick="deleteSeller('kevin3')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN GENERAR QRs -->
+        <div id="generar-qr-section" class="section">
+            <h2 class="section-title">🎫 Generar Códigos QR</h2>
+            
+            <div class="qr-generation-form">
+                <!-- Tarjetas de paquetes en una sola fila -->
+                <div class="package-cards">
+                    <div class="package-card basic">
+                        <div class="icon" style="font-size: 28px; color: #667eea; margin-bottom: 6px;"><i class="ri-star-line"></i></div>
+                        <div class="name">1️⃣ Básico – $150</div>
+                        <div class="package-metric">Incluye: 4 QRs (4 anuncios activos)</div>
+                        <div class="package-metric soft">Duración por anuncio: 2 semanas</div>
+                        <ul class="package-features">
+                            <li>📋 Publicación en directorio general</li>
+                            <li>📝 Información básica (nombre, dirección, WhatsApp, redes sociales, 2 fotos)</li>
+                            <li>📊 Acceso a estadísticas simples (visitas totales del anuncio)</li>
+                            <li>📧 Soporte: solo por email</li>
+                        </ul>
+                        <button class="package-choose-btn" onclick="setPackage('basic')">Elegir este Plan</button>
+                    </div>
+                    <div class="package-card premium">
+                        <div class="icon" style="font-size: 28px; color: #28a745; margin-bottom: 6px;"><i class="ri-vip-crown-line"></i></div>
+                        <div class="name">2️⃣ Estándar – $300</div>
+                        <div class="package-metric">Incluye: 10 QRs (10 anuncios activos)</div>
+                        <div class="package-metric soft">Duración por anuncio: 1 mes</div>
+                        <ul class="package-features">
+                            <li>✅ Todo lo del paquete Básico</li>
+                            <li>⭐ Publicación destacada en el directorio (prioridad en resultados)</li>
+                            <li>📸 Galería de fotos (hasta 5) y 1 video corto promocional</li>
+                            <li>📈 Estadísticas detalladas (visitas, clics a WhatsApp, clics a redes sociales)</li>
+                            <li>🗺️ Botón directo a Google Maps</li>
+                            <li>💬 Soporte: email + WhatsApp</li>
+                        </ul>
+                        <button class="package-choose-btn" onclick="setPackage('premium')">Elegir este Plan</button>
+                    </div>
+                    <div class="package-card enterprise">
+                        <div class="icon" style="font-size: 28px; color: #6f42c1; margin-bottom: 6px;"><i class="ri-building-4-line"></i></div>
+                        <div class="name">3️⃣ Premium – $450</div>
+                        <div class="package-metric">Incluye: 16 QRs (16 anuncios activos)</div>
+                        <div class="package-metric soft">Duración por anuncio: 2 meses</div>
+                        <ul class="package-features">
+                            <li>✅ Todo lo del paquete Estándar</li>
+                            <li>👑 Publicación como "Anuncio Premium" (aparece siempre primero)</li>
+                            <li>🎬 Galería completa (10 fotos + 3 videos)</li>
+                            <li>📊 Estadísticas avanzadas (tiempo de permanencia, conversiones)</li>
+                            <li>🌐 Integración con página web externa (si el negocio ya tiene web)</li>
+                            <li>📞 Botón de llamada directa</li>
+                            <li>🎯 Soporte: personalizado (teléfono, WhatsApp, email)</li>
+                        </ul>
+                        <button class="package-choose-btn" onclick="setPackage('enterprise')">Elegir este Plan</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Buscar Cliente por Email:</label>
+                        <input type="email" id="qr-seller-search" class="form-input" placeholder="Buscar por email..." oninput="searchClients(this.value)">
+                        <div id="search-results" class="search-results" style="display: none;">
+                            <!-- Los resultados aparecerán aquí -->
+                        </div>
+                        <input type="hidden" id="selected-client-id" value="">
+                        <input type="hidden" id="selected-client-name" value="">
+                        <input type="hidden" id="selected-client-email" value="">
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label class="form-label">Tipo de Paquete:</label>
+                        <select id="qr-package" class="form-input" required onchange="calculatePrice()">
+                            <option value="">Selecciona el tipo</option>
+                            <option value="basic">Básico - $5 por QR</option>
+                            <option value="premium">Premium - $8 por QR</option>
+                            <option value="enterprise">Empresarial - $12 por QR</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cantidad de QRs:</label>
+                        <input type="number" id="qr-quantity" class="form-input" placeholder="10" min="1" max="100" required onchange="calculatePrice()" oninput="calculatePrice()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total:</label>
+                        <div class="total-price-display" id="total-price">$0</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn-generate-qr" onclick="generateQRs()">
+                            <i class="ri-qr-code-line"></i>
+                            Generar QRs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de QRs Generados -->
+            <div class="qr-list-section">
+                <h3 class="subsection-title">📋 QRs Generados Recientemente</h3>
+                <div style="margin: 0.5rem 0 1rem 0;">
+                    <input type="text" id="qrs-search" class="form-input" placeholder="Buscar por código, cliente, paquete o fecha..." oninput="filterQrs(this.value)">
+                </div>
+                
+                <div class="qr-table">
+                    <div class="table-header">
+                        <div class="header-cell">Código QR</div>
+                        <div class="header-cell">Cliente</div>
+                        <div class="header-cell">Paquete</div>
+                        <div class="header-cell">Fecha</div>
+                        <div class="header-cell">Estado</div>
+                        <div class="header-cell">Acciones</div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="cell">QR_ABC123XYZ789</div>
+                        <div class="cell">Kevin Catagña</div>
+                        <div class="cell">Premium</div>
+                        <div class="cell">2025-01-15</div>
+                        <div class="cell">
+                            <span class="status-badge success">Activo</span>
+                        </div>
+                        <div class="cell">
+                            <button class="btn-action secondary" onclick="viewQrDetails('QR_ABC123XYZ789','Kevin Catagña','kevincata2005@gmail.com','Premium','2025-01-15','Activo')">
+                                <i class="ri-information-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-row">
+                        <div class="cell">QR_DEF456UVW012</div>
+                        <div class="cell">Kevin Manuel</div>
+                        <div class="cell">Básico</div>
+                        <div class="cell">2025-01-14</div>
+                        <div class="cell">
+                            <span class="status-badge warning">Usado</span>
+                        </div>
+                        <div class="cell">
+                            <button class="btn-action secondary" onclick="viewQrDetails('QR_DEF456UVW012','Kevin Manuel','mirianpila5@gmail.com','Básico','2025-01-14','Usado')">
+                                <i class="ri-information-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN ESTADÍSTICAS -->
+        <div id="estadisticas-section" class="section">
+            <h2 class="section-title">📈 Estadísticas de Ventas</h2>
+            
+            <div class="stats-charts">
+                <div class="chart-card">
+                    <h3 class="chart-title">QRs por Vendedor</h3>
+                    <div class="chart-placeholder">
+                        <div class="seller-chart">
+                            <div class="seller-bar">
+                                <div class="bar-label">Kevin C. (kevincata)</div>
+                                <div class="bar-fill" style="width: 80%;">12 QRs</div>
+                            </div>
+                            <div class="seller-bar">
+                                <div class="bar-label">Kevin Manuel</div>
+                                <div class="bar-fill" style="width: 20%;">2 QRs</div>
+                            </div>
+                            <div class="seller-bar">
+                                <div class="bar-label">Kevin C. (urbanka)</div>
+                                <div class="bar-fill" style="width: 0%;">0 QRs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3 class="chart-title">Ventas por Mes</h3>
+                    <div class="chart-placeholder">
+                        <div class="monthly-chart">
+                            <div class="month-bar" style="height: 60%;" title="Enero: 45 QRs"></div>
+                            <div class="month-bar" style="height: 80%;" title="Febrero: 67 QRs"></div>
+                            <div class="month-bar" style="height: 45%;" title="Marzo: 35 QRs"></div>
+                            <div class="month-bar" style="height: 90%;" title="Abril: 89 QRs"></div>
+                            <div class="month-bar" style="height: 70%;" title="Mayo: 56 QRs"></div>
+                            <div class="month-bar" style="height: 85%;" title="Junio: 78 QRs"></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>Ene</span>
+                            <span>Feb</span>
+                            <span>Mar</span>
+                            <span>Abr</span>
+                            <span>May</span>
+                            <span>Jun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal envío de QR -->
+    <div id="qrSendModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #fad646 0%, #fcc93d 100%); padding: 16px 20px; color: #111; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>Cliente Guardado</span>
+                <button onclick="closeQrSendModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 10px;">
+                <div style="font-size: 48px; text-align: center;">✅</div>
+                <p id="qrSendMessage" style="text-align: center; color: #333; line-height: 1.4;">
+                    Cliente guardado correctamente
+                </p>
+                <button onclick="closeQrSendModal()" style="margin-top: 8px; padding: 10px 16px; border: none; border-radius: 10px; background: #111; color: #fff; font-weight: 700; cursor: pointer;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QRs Enviados -->
+    <div id="qrsSentModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 480px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); padding: 16px 20px; color: white; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>🎫 QRs Enviados Exitosamente</span>
+                <button onclick="closeQrsSentModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: white;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 15px;">
+                <div style="font-size: 48px; text-align: center;">📧</div>
+                <div id="qrsSentMessage" style="text-align: center; color: #333; line-height: 1.5;">
+                    <!-- El mensaje se insertará aquí -->
+                </div>
+                <button onclick="closeQrsSentModal()" style="margin-top: 8px; padding: 12px 24px; border: none; border-radius: 10px; background: #28a745; color: white; font-weight: 700; cursor: pointer; font-size: 16px;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalles del QR -->
+    <div id="qrDetailsModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 520px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%); padding: 16px 20px; color: white; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>📋 Detalles del QR</span>
+                <button onclick="closeQrDetailsModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: white;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 12px;">
+                <div id="qrDetailsContent" style="text-align: left; color: #333; line-height: 1.6;"></div>
+                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                    <button onclick="closeQrDetailsModal()" style="padding: 10px 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-weight: 600; cursor: pointer;">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detalles del Cliente -->
+    <div id="clientDetailsModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); padding: 16px 20px; color: white; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>👤 Detalles del Cliente</span>
+                <button onclick="closeClientDetailsModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: white;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 15px;">
+                <div id="clientDetailsContent" style="text-align: left; color: #333; line-height: 1.6;">
+                    <!-- Los detalles se insertarán aquí -->
+                </div>
+                <button onclick="closeClientDetailsModal()" style="margin-top: 8px; padding: 12px 24px; border: none; border-radius: 10px; background: #007bff; color: white; font-weight: 700; cursor: pointer; font-size: 16px;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Cliente -->
+    <div id="editClientModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); padding: 16px 20px; color: #111; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>✏️ Editar Cliente</span>
+                <button onclick="closeEditClientModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: #111;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 15px;">
+                <div style="display: grid; gap: 12px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Nombre Completo:</label>
+                        <input type="text" id="edit-client-name" class="form-input" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email:</label>
+                        <input type="email" id="edit-client-email" class="form-input" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Teléfono:</label>
+                        <input type="tel" id="edit-client-phone" class="form-input" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button onclick="closeEditClientModal()" style="padding: 10px 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-weight: 600; cursor: pointer;">Cancelar</button>
+                    <button onclick="saveClientEdit()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #28a745; color: white; font-weight: 600; cursor: pointer;">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmar Eliminación -->
+    <div id="deleteConfirmModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 16px 20px; color: white; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>⚠️ Confirmar Eliminación</span>
+                <button onclick="closeDeleteConfirmModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: white;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 15px;">
+                <div style="text-align: center; color: #333; line-height: 1.6;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">🗑️</div>
+                    <p style="margin-bottom: 10px;"><strong>¿Estás seguro de que quieres eliminar este cliente?</strong></p>
+                    <p style="color: #666; margin-bottom: 15px;">Esta acción no se puede deshacer y se eliminarán todos los datos asociados.</p>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button onclick="closeDeleteConfirmModal()" style="padding: 10px 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-weight: 600; cursor: pointer;">Cancelar</button>
+                    <button onclick="confirmDeleteClient()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #dc3545; color: white; font-weight: 600; cursor: pointer;">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cliente Eliminado -->
+    <div id="clientDeletedModal" class="modal" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-card" style="background: #fff; border-radius: 16px; width: 95%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #6c757d 0%, #545b62 100%); padding: 16px 20px; color: white; font-weight: 700; display:flex; align-items:center; justify-content: space-between;">
+                <span>🗑️ Cliente Eliminado</span>
+                <button onclick="closeClientDeletedModal()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: white;">×</button>
+            </div>
+            <div style="padding: 20px; display: grid; gap: 15px;">
+                <div style="font-size: 48px; text-align: center;">✅</div>
+                <p style="text-align: center; color: #333; line-height: 1.4;">
+                    El cliente ha sido eliminado exitosamente
+                </p>
+                <button onclick="closeClientDeletedModal()" style="margin-top: 8px; padding: 10px 16px; border: none; border-radius: 10px; background: #6c757d; color: #fff; font-weight: 700; cursor: pointer;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Protección de ruta: solo admin logueado
+        (function guardAdmin() {
+            try {
+                const isLogged = localStorage.getItem('adminLoggedIn') === 'true';
+                if (!isLogged) {
+                    window.location.href = 'web.html#login-admin';
+                    return;
+                }
+            } catch (e) {
+                window.location.href = 'web.html#login-admin';
+                return;
+            }
+        })();
+
+        function logoutAdmin() {
+            try { localStorage.removeItem('adminLoggedIn'); } catch (e) {}
+            window.location.href = 'web.html#login-admin';
+        }
+        // Función para el menú hamburguesa - EXACTAMENTE IGUAL AL DE CLIENTE
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            if (sideMenu.style.left === '0px') {
+                sideMenu.style.left = '-300px';
+            } else {
+                sideMenu.style.left = '0px';
+            }
+        }
+
+        // Funciones del topbar - EXACTAMENTE IGUAL AL DE CLIENTE
+        
+
+        function scrollToHelp() {
+            alert('❓ ¡Función de Ayuda!\n\nAquí encontrarás toda la información necesaria para usar Ruta Amarilla.\n\nPróximamente disponible...');
+        }
+
+        // Funciones específicas del Panel de Ventas QR
+        let currentSection = 'resumen';
+
+        // Datos de paquetes (plan -> QRs por paquete y precio por paquete)
+        const packageData = {
+            basic: { qrsPerPackage: 4, pricePerPackage: 150, label: 'Básico' },
+            premium: { qrsPerPackage: 10, pricePerPackage: 300, label: 'Estándar' },
+            enterprise: { qrsPerPackage: 16, pricePerPackage: 450, label: 'Premium' }
+        };
+        // Contadores de paquetes seleccionados
+        let packageCounts = { basic: 0, premium: 0, enterprise: 0 };
+
+        function getTotalsFromPackages() {
+            let totalQrs = 0;
+            let totalPrice = 0;
+            Object.keys(packageCounts).forEach(key => {
+                const count = packageCounts[key] || 0;
+                if (count > 0) {
+                    totalQrs += count * packageData[key].qrsPerPackage;
+                    totalPrice += count * packageData[key].pricePerPackage;
+                }
+            });
+            return { totalQrs, totalPrice };
+        }
+
+        function updateQuantityAndTotal() {
+            const { totalQrs, totalPrice } = getTotalsFromPackages();
+            const qtyInput = document.getElementById('qr-quantity');
+            const totalPriceElement = document.getElementById('total-price');
+            if (qtyInput) qtyInput.value = totalQrs || '';
+            if (totalPriceElement) totalPriceElement.textContent = `$${totalPrice || 0}`;
+        }
+ 
+        function openQrSendModal() {
+            const name = document.getElementById('seller-name').value;
+            const email = document.getElementById('seller-email').value;
+            const phone = document.getElementById('seller-phone').value;
+            if (!name || !email || !phone) {
+                alert('❌ Completa Nombre, Email y Teléfono para generar el QR');
+                return;
+            }
+            const msg = `Cliente guardado: ${name} (${email})`;
+            document.getElementById('qrSendMessage').textContent = msg;
+            document.getElementById('qrSendModal').style.display = 'flex';
+            // Limpiar los campos inmediatamente después de enviar
+            document.getElementById('seller-name').value = '';
+            document.getElementById('seller-email').value = '';
+            document.getElementById('seller-phone').value = '';
+        }
+
+        function saveClient() {
+            openQrSendModal();
+            // Agregar el cliente a la tabla visualmente (arriba de la lista)
+            const name = document.getElementById('qrSendMessage').textContent.match(/^Cliente guardado: (.*?) \(/)?.[1] || '';
+            const email = document.getElementById('qrSendMessage').textContent.match(/\((.*?)\)/)?.[1] || '';
+            const phone = '+593 99 000 0000';
+            if (name && email) {
+                const table = document.querySelector('.sellers-table');
+                if (table) {
+                    const newRow = document.createElement('div');
+                    newRow.className = 'table-row';
+                    const newId = 'client_' + Date.now();
+                    newRow.innerHTML = `
+                        <div class="cell"><span class="seller-name">${name}</span></div>
+                        <div class="cell"><span class="seller-email">${email}</span></div>
+                        <div class="cell"><span class="seller-phone">${phone}</span></div>
+                        <div class="cell">0</div>
+                        <div class="cell">0</div>
+                        <div class="cell">
+                            <div class="seller-actions">
+                                <button class="btn-action primary" onclick="viewSellerDetails('${newId}')">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                                <button class="btn-action secondary" onclick="editSeller('${newId}')">
+                                    <i class="ri-edit-line"></i>
+                                </button>
+                                <button class="btn-action danger" onclick="deleteSeller('${newId}')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    const header = table.querySelector('.table-header');
+                    table.insertBefore(newRow, header.nextSibling);
+                    // Guardar también en la base de datos para búsqueda
+                    clientsDatabase.push({ id: newId, name, email, phone });
+                }
+            }
+        }
+
+        function closeQrSendModal() {
+            document.getElementById('qrSendModal').style.display = 'none';
+        }
+
+        function closeQrsSentModal() {
+            document.getElementById('qrsSentModal').style.display = 'none';
+        }
+
+        // Funciones para cerrar modales
+        function closeClientDetailsModal() {
+            document.getElementById('clientDetailsModal').style.display = 'none';
+        }
+
+        function closeEditClientModal() {
+            document.getElementById('editClientModal').style.display = 'none';
+        }
+
+        function closeDeleteConfirmModal() {
+            document.getElementById('deleteConfirmModal').style.display = 'none';
+        }
+
+        function closeClientDeletedModal() {
+            document.getElementById('clientDeletedModal').style.display = 'none';
+        }
+
+        // Función para cambiar entre secciones
+        function showSection(sectionName) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remover clase active de todos los botones
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+            
+            currentSection = sectionName;
+        }
+
+        // Funciones para gestión de vendedores
+        function createSeller() {
+            const name = document.getElementById('seller-name').value;
+            const email = document.getElementById('seller-email').value;
+            const phone = document.getElementById('seller-phone').value;
+
+            if (!name || !email || !phone) {
+                alert('❌ Por favor, completa todos los campos para crear el vendedor');
+                return;
+            }
+
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('❌ Por favor, ingresa un email válido');
+                return;
+            }
+
+            alert(`✅ Vendedor creado exitosamente!\n\n👤 Nombre: ${name}\n📧 Email: ${email}\n📱 Teléfono: ${phone}\n\n🎫 Ya puede generar códigos QR para este vendedor`);
+            
+            // Limpiar formulario
+            document.getElementById('seller-name').value = '';
+            document.getElementById('seller-email').value = '';
+            document.getElementById('seller-phone').value = '';
+        }
+
+        function viewSellerDetails(sellerId) {
+            const sellerData = {
+                'kevin1': {
+                    name: 'Kevin Catagña',
+                    email: 'kevincata2005@gmail.com',
+                    phone: '+593 99 554 7523',
+                    qrs: 12,
+                    packages: 6,
+                    earnings: '$360'
+                },
+                'kevin2': {
+                    name: 'María López',
+                    email: 'urbanka09@gmail.com',
+                    phone: '+593 99 554 7523',
+                    qrs: 0,
+                    packages: 0,
+                    earnings: '$0'
+                },
+                'kevin3': {
+                    name: 'Kevin Manuel',
+                    email: 'mirianpila5@gmail.com',
+                    phone: '+593 99 554 7523',
+                    qrs: 2,
+                    packages: 2,
+                    earnings: '$60'
+                }
+            };
+            let seller = sellerData[sellerId];
+            if (!seller) {
+                const dyn = clientsDatabase.find(c => c.id === sellerId);
+                if (dyn) {
+                    seller = { name: dyn.name, email: dyn.email, phone: dyn.phone, qrs: 0, packages: 0, earnings: '$0' };
+                }
+            }
+            if (seller) {
+                const content = document.getElementById('clientDetailsContent');
+                content.innerHTML = `
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <h3 style="color: #007bff; margin-bottom: 15px; text-align: center;">👤 Información Personal</h3>
+                        <p style="margin: 8px 0;"><strong>Nombre:</strong> ${seller.name}</p>
+                        <p style="margin: 8px 0;"><strong>Email:</strong> ${seller.email}</p>
+                        <p style="margin: 8px 0;"><strong>Teléfono:</strong> ${seller.phone}</p>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px;">
+                        <h3 style="color: #1976d2; margin-bottom: 15px; text-align: center;">📈 Estadísticas de Ventas</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
+                            <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #e3f2fd;">
+                                <div style="font-size: 24px; font-weight: bold; color: #007bff;">${seller.qrs}</div>
+                                <div style="color: #666; font-size: 14px;">QRs Vendidos</div>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #e3f2fd;">
+                                <div style="font-size: 24px; font-weight: bold; color: #28a745;">${seller.packages}</div>
+                                <div style="color: #666; font-size: 14px;">Paquetes</div>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #e3f2fd;">
+                                <div style="font-size: 24px; font-weight: bold; color: #ffc107;">${seller.earnings}</div>
+                                <div style="color: #666; font-size: 14px;">Ganancias</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('clientDetailsModal').style.display = 'flex';
+            }
+        }
+
+        function editSeller(sellerId) {
+            const sellerData = {
+                'kevin1': {
+                    name: 'Kevin Catagña',
+                    email: 'kevincata2005@gmail.com',
+                    phone: '+593 99 554 7523'
+                },
+                'kevin2': {
+                    name: 'María López',
+                    email: 'urbanka09@gmail.com',
+                    phone: '+593 99 554 7523'
+                },
+                'kevin3': {
+                    name: 'Kevin Manuel',
+                    email: 'mirianpila5@gmail.com',
+                    phone: '+593 99 554 7523'
+                }
+            };
+            let seller = sellerData[sellerId];
+            if (!seller) {
+                const dyn = clientsDatabase.find(c => c.id === sellerId);
+                if (dyn) {
+                    seller = { name: dyn.name, email: dyn.email, phone: dyn.phone };
+                }
+            }
+            if (seller) {
+                // Llenar el formulario de edición
+                document.getElementById('edit-client-name').value = seller.name;
+                document.getElementById('edit-client-email').value = seller.email;
+                document.getElementById('edit-client-phone').value = seller.phone;
+                
+                // Guardar el ID del cliente que se está editando
+                document.getElementById('edit-client-name').setAttribute('data-client-id', sellerId);
+                
+                // Mostrar el modal
+                document.getElementById('editClientModal').style.display = 'flex';
+            }
+        }
+
+        function deleteSeller(sellerId) {
+            // Guardar el ID del cliente que se va a eliminar
+            document.getElementById('deleteConfirmModal').setAttribute('data-client-id', sellerId);
+            
+            // Mostrar el modal de confirmación
+            document.getElementById('deleteConfirmModal').style.display = 'flex';
+        }
+
+        // Base de datos de clientes (en un caso real esto vendría de una base de datos)
+        let clientsDatabase = [
+            { id: 'kevin1', name: 'Kevin Catagña', email: 'kevincata2005@gmail.com', phone: '+593 99 554 7523' },
+            { id: 'kevin2', name: 'María López', email: 'urbanka09@gmail.com', phone: '+593 99 554 7523' },
+            { id: 'kevin3', name: 'Kevin Manuel', email: 'mirianpila5@gmail.com', phone: '+593 99 554 7523' }
+        ];
+
+        // Función para buscar clientes
+        function searchClients(searchTerm) {
+            const searchResults = document.getElementById('search-results');
+            const searchInput = document.getElementById('qr-seller-search');
+            
+            if (!searchTerm || searchTerm.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const filteredClients = clientsDatabase.filter(client => 
+                client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                client.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            if (filteredClients.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">No se encontraron clientes</div>';
+                searchResults.style.display = 'block';
+                return;
+            }
+
+            searchResults.innerHTML = filteredClients.map(client => `
+                <div class="search-result-item" onclick="selectClient('${client.id}', '${client.name}', '${client.email}')">
+                    <div class="client-info">
+                        <strong>${client.name}</strong>
+                        <span>${client.email}</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            searchResults.style.display = 'block';
+        }
+
+        // Función para seleccionar un cliente
+        function selectClient(clientId, clientName, clientEmail) {
+            document.getElementById('qr-seller-search').value = clientEmail;
+            document.getElementById('selected-client-id').value = clientId;
+            document.getElementById('selected-client-name').value = clientName;
+            document.getElementById('selected-client-email').value = clientEmail;
+            
+            document.getElementById('search-results').style.display = 'none';
+        }
+
+        // Cerrar resultados al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const searchResults = document.getElementById('search-results');
+            const searchInput = document.getElementById('qr-seller-search');
+            
+            if (!searchResults.contains(event.target) && !searchInput.contains(event.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Ahora el precio se calcula por paquetes acumulados
+        function calculatePrice() {
+            updateQuantityAndTotal();
+        }
+
+        // Seleccionar paquete desde tarjetas
+        function setPackage(type) {
+            // Sumar un paquete del tipo elegido
+            packageCounts[type] = (packageCounts[type] || 0) + 1;
+            // Mantener el último paquete elegido en el select oculto para compatibilidad
+            const select = document.getElementById('qr-package');
+            if (select) select.value = type;
+            // Feedback visual (marcar seleccionado brevemente)
+            const card = document.querySelector(`.package-card.${type}`);
+            if (card) {
+                card.classList.add('selected');
+                setTimeout(() => card.classList.remove('selected'), 600);
+            }
+            // Actualizar cantidad y total
+            updateQuantityAndTotal();
+        }
+
+        // Funciones para generación de QRs
+        function generateQRs() {
+            const selectedClientId = document.getElementById('selected-client-id').value;
+            const selectedClientName = document.getElementById('selected-client-name').value;
+            const selectedClientEmail = document.getElementById('selected-client-email').value;
+            const quantity = document.getElementById('qr-quantity').value;
+            const packageType = document.getElementById('qr-package').value;
+
+            if (!selectedClientId || !quantity || !packageType) {
+                alert('❌ Por favor, selecciona un cliente y completa todos los campos para generar QRs');
+                return;
+            }
+
+            if (quantity < 1 || quantity > 100) {
+                alert('❌ La cantidad debe estar entre 1 y 100 QRs');
+                return;
+            }
+
+            // Calcular costo total según paquetes acumulados
+            const totals = getTotalsFromPackages();
+            const totalCost = totals.totalPrice;
+            const totalQrsNow = totals.totalQrs;
+            // Nombre de paquete: si hay mezcla, mostrar 'Mixto'
+            const nonZero = Object.keys(packageCounts).filter(k => packageCounts[k] > 0);
+            const packLabel = nonZero.length === 1 ? packageData[nonZero[0]].label : 'Mixto';
+
+            // Generar código QR único
+            const qrCode = 'QR_' + Math.random().toString(36).substr(2, 9).toUpperCase() + '_' + Date.now().toString().slice(-6);
+            
+            // Obtener fecha actual
+            const today = new Date();
+            const dateString = today.toISOString().split('T')[0];
+
+            // Agregar nueva fila a la tabla de QRs generados (tabla dentro de generar-qr-section)
+            const qrTable = document.querySelector('#generar-qr-section .qr-table');
+            const newRow = document.createElement('div');
+            newRow.className = 'table-row';
+            newRow.innerHTML = `
+                <div class="cell">${qrCode}</div>
+                <div class="cell">${selectedClientName}</div>
+                <div class="cell">${packLabel}</div>
+                <div class="cell">${dateString}</div>
+                <div class="cell">
+                    <span class="status-badge success">Activo</span>
+                </div>
+                <div class="cell">
+                    <button class="btn-action secondary" onclick="viewQrDetails('${qrCode}','${selectedClientName}','${selectedClientEmail}','${packLabel}','${dateString}','Activo')">
+                        <i class="ri-information-line"></i>
+                    </button>
+                </div>
+            `;
+
+            // Insertar la nueva fila al principio de la tabla (después del header)
+            const qrTableBody = document.querySelector('#generar-qr-section .qr-table');
+            const tableHeader = qrTableBody.querySelector('.table-header');
+            qrTableBody.insertBefore(newRow, tableHeader.nextSibling);
+
+            // Mostrar modal de QRs enviados
+            const qrsSentMessage = document.getElementById('qrsSentMessage');
+            qrsSentMessage.innerHTML = `
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: #28a745; font-size: 18px;">✅ QRs Generados Exitosamente</strong>
+                </div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: left; margin-bottom: 15px;">
+                    <p style="margin: 8px 0;"><strong>👤 Cliente:</strong> ${selectedClientName}</p>
+                    <p style="margin: 8px 0;"><strong>📧 Email:</strong> ${selectedClientEmail}</p>
+                    <p style="margin: 8px 0;"><strong>📦 Paquete:</strong> ${packLabel}</p>
+                    <p style="margin: 8px 0;"><strong>🔢 Cantidad:</strong> ${totalQrsNow} QRs</p>
+                    <p style="margin: 8px 0;"><strong>💰 Costo Total:</strong> $${totalCost}</p>
+                </div>
+                <div style="color: #28a745; font-weight: 600;">
+                    ✉️ QRs enviados al Gmail del cliente
+                </div>
+            `;
+            
+            document.getElementById('qrsSentModal').style.display = 'flex';
+
+            // Limpiar formulario
+            document.getElementById('qr-seller-search').value = '';
+            document.getElementById('selected-client-id').value = '';
+            document.getElementById('selected-client-name').value = '';
+            document.getElementById('selected-client-email').value = '';
+            document.getElementById('qr-quantity').value = '';
+            document.getElementById('qr-package').value = '';
+            // Reiniciar acumulados
+            packageCounts = { basic: 0, premium: 0, enterprise: 0 };
+            updateQuantityAndTotal();
+        }
+
+        function downloadQR(qrCode) {
+            // Crear modal de descarga temporal
+            const downloadModal = document.createElement('div');
+            downloadModal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000; display: flex; align-items: center; justify-content: center;';
+            downloadModal.innerHTML = `
+                <div style="background: #fff; border-radius: 16px; padding: 20px; max-width: 450px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">📥</div>
+                    <h3 style="color: #333; margin-bottom: 15px;">Descargando QR</h3>
+                    <p style="color: #666; margin-bottom: 20px; line-height: 1.5;">
+                        <strong>Código:</strong> ${qrCode}<br>
+                        El código QR se descargará como imagen PNG.<br>
+                        <em>Próximamente disponible...</em>
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #007bff; color: white; font-weight: 600; cursor: pointer;">OK</button>
+                </div>
+            `;
+            document.body.appendChild(downloadModal);
+        }
+
+        // Mostrar detalles de QR
+        function viewQrDetails(code, client, email, pack, dateStr, status) {
+            const content = document.getElementById('qrDetailsContent');
+            content.innerHTML = `
+                <div style="background:#f8f9fa; padding:16px; border-radius:10px; margin-bottom:12px;">
+                    <h3 style="margin:0 0 10px 0; color:#17a2b8;">Información del Cliente</h3>
+                    <p style="margin:6px 0;"><strong>👤 Cliente:</strong> ${client}</p>
+                    <p style="margin:6px 0;"><strong>📧 Email:</strong> ${email}</p>
+                </div>
+                <div style="background:#eef2ff; padding:16px; border-radius:10px;">
+                    <h3 style="margin:0 0 10px 0; color:#6f42c1;">Detalles del QR</h3>
+                    <p style="margin:6px 0;"><strong>🧾 Código:</strong> ${code}</p>
+                    <p style="margin:6px 0;"><strong>📦 Paquete:</strong> ${pack}</p>
+                    <p style="margin:6px 0;"><strong>📅 Fecha de generación:</strong> ${dateStr}</p>
+                    <p style="margin:6px 0;"><strong>🔖 Estado:</strong> ${status}</p>
+                    <p style="margin:6px 0; color:#666;"><em>✉️ Enviado al correo del cliente al momento de generarlo.</em></p>
+                </div>
+            `;
+            document.getElementById('qrDetailsModal').style.display = 'flex';
+        }
+
+        function closeQrDetailsModal() {
+            document.getElementById('qrDetailsModal').style.display = 'none';
+        }
+
+        // Filtro para Clientes Registrados
+        function filterClients(query) {
+            const normalized = (query || '').toLowerCase();
+            const rows = document.querySelectorAll('.sellers-table .table-row');
+            rows.forEach(row => {
+                const name = (row.querySelector('.seller-name')?.textContent || '').toLowerCase();
+                const email = (row.querySelector('.seller-email')?.textContent || '').toLowerCase();
+                const phone = (row.querySelector('.seller-phone')?.textContent || '').toLowerCase();
+                const matches = name.includes(normalized) || email.includes(normalized) || phone.includes(normalized);
+                row.style.display = matches ? '' : 'none';
+            });
+        }
+
+        // Filtro para QRs Generados Recientemente
+        function filterQrs(query) {
+            const normalized = (query || '').toLowerCase();
+            const rows = document.querySelectorAll('#generar-qr-section .qr-table .table-row');
+            rows.forEach(row => {
+                const code = (row.children[0]?.textContent || '').toLowerCase();
+                const client = (row.children[1]?.textContent || '').toLowerCase();
+                const pack = (row.children[2]?.textContent || '').toLowerCase();
+                const date = (row.children[3]?.textContent || '').toLowerCase();
+                const matches = code.includes(normalized) || client.includes(normalized) || pack.includes(normalized) || date.includes(normalized);
+                row.style.display = matches ? '' : 'none';
+            });
+        }
+
+        // Función para confirmar la eliminación del cliente
+        function confirmDeleteClient() {
+            const clientId = document.getElementById('deleteConfirmModal').getAttribute('data-client-id');
+            
+            // Eliminar la fila del cliente de la tabla
+            const clientRows = document.querySelectorAll('.sellers-table .table-row');
+            clientRows.forEach(row => {
+                const actionButtons = row.querySelectorAll('.btn-action');
+                actionButtons.forEach(btn => {
+                    if (btn.onclick && btn.onclick.toString().includes(clientId)) {
+                        row.remove();
+                    }
+                });
+            });
+            // También eliminar del arreglo de base de datos
+            clientsDatabase = clientsDatabase.filter(c => c.id !== clientId);
+            
+            // Cerrar el modal de confirmación
+            closeDeleteConfirmModal();
+            
+            // Mostrar el modal de confirmación de eliminación
+            document.getElementById('clientDeletedModal').style.display = 'flex';
+        }
+
+        // Función para guardar los cambios del cliente editado
+        function saveClientEdit() {
+            const clientId = document.getElementById('edit-client-name').getAttribute('data-client-id');
+            const newName = document.getElementById('edit-client-name').value;
+            const newEmail = document.getElementById('edit-client-email').value;
+            const newPhone = document.getElementById('edit-client-phone').value;
+            
+            if (!newName || !newEmail || !newPhone) {
+                // Crear modal de error temporal
+                const errorModal = document.createElement('div');
+                errorModal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000; display: flex; align-items: center; justify-content: center;';
+                errorModal.innerHTML = `
+                    <div style="background: #fff; border-radius: 16px; padding: 20px; max-width: 400px; text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
+                        <p style="color: #333; margin-bottom: 20px;">Por favor, completa todos los campos</p>
+                        <button onclick="this.parentElement.parentElement.remove()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #dc3545; color: white; font-weight: 600; cursor: pointer;">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(errorModal);
+                return;
+            }
+            
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(newEmail)) {
+                // Crear modal de error temporal
+                const errorModal = document.createElement('div');
+                errorModal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000; display: flex; align-items: center; justify-content: center;';
+                errorModal.innerHTML = `
+                    <div style="background: #fff; border-radius: 16px; padding: 20px; max-width: 400px; text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 15px;">❌</div>
+                        <p style="color: #333; margin-bottom: 20px;">Por favor, ingresa un email válido</p>
+                        <button onclick="this.parentElement.parentElement.remove()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #dc3545; color: white; font-weight: 600; cursor: pointer;">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(errorModal);
+                return;
+            }
+            
+            // Actualizar la fila del cliente en la tabla
+            const clientRows = document.querySelectorAll('.sellers-table .table-row');
+            clientRows.forEach(row => {
+                const actionButtons = row.querySelectorAll('.btn-action');
+                actionButtons.forEach(btn => {
+                    if (btn.onclick && btn.onclick.toString().includes(clientId)) {
+                        const nameElement = row.querySelector('.seller-name');
+                        const emailElement = row.querySelector('.seller-email');
+                        const phoneElement = row.querySelector('.seller-phone');
+                        
+                        if (nameElement) nameElement.textContent = newName;
+                        if (emailElement) emailElement.textContent = newEmail;
+                        if (phoneElement) phoneElement.textContent = newPhone;
+                    }
+                });
+            });
+            
+            // Cerrar el modal de edición
+            closeEditClientModal();
+            
+            // Crear modal de éxito temporal
+            const successModal = document.createElement('div');
+            successModal.style.cssText = 'position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 3000; display: flex; align-items: center; justify-content: center;';
+            successModal.innerHTML = `
+                <div style="background: #fff; border-radius: 16px; padding: 20px; max-width: 400px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 15px;">✅</div>
+                    <p style="color: #333; margin-bottom: 20px;">Cliente actualizado exitosamente</p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="padding: 10px 20px; border: none; border-radius: 8px; background: #28a745; color: white; font-weight: 600; cursor: pointer;">OK</button>
+                </div>
+            `;
+            document.body.appendChild(successModal);
+
+            // Actualizar en la base de datos para reflejar en búsqueda
+            const idx = clientsDatabase.findIndex(c => c.id === clientId);
+            if (idx !== -1) {
+                clientsDatabase[idx] = { ...clientsDatabase[idx], name: newName, email: newEmail, phone: newPhone };
+            }
+        }
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de contadores en la sección resumen
+            setTimeout(() => {
+                animateCounters();
+            }, 500);
+            // Hacer solo lectura el campo de cantidad (se autogestiona por los planes)
+            const qtyInput = document.getElementById('qr-quantity');
+            if (qtyInput) qtyInput.readOnly = true;
+        });
+
+        // Animación de números contador
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = counter.textContent.replace('$', '').replace(',', '');
+                const isPrice = counter.textContent.includes('$');
+                const hasComma = counter.textContent.includes(',');
+                
+                let current = 0;
+                const increment = Math.ceil(target / 50);
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayValue = current;
+                    if (hasComma && current >= 1000) {
+                        displayValue = current.toLocaleString();
+                    }
+                    if (isPrice) {
+                        displayValue = '$' + displayValue;
+                    }
+                    
+                    counter.textContent = displayValue;
+                }, 50);
+            });
+        }
+
+
+    </script>
+</body>
+</html>

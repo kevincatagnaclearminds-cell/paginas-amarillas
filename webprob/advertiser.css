@@ -1,0 +1,326 @@
+/* Estilos para la Vista de Anunciante */
+.advertiser-view {
+    display: none;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.advertiser-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #fad646 0%, #fcc93d 100%);
+    border-radius: 15px;
+    padding: 2rem 1rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.back-btn {
+    background: #FFD700;
+    color: #111;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #FFA500;
+    transform: translateY(-2px);
+}
+
+.advertiser-header h1 {
+    font-size: 2.5rem;
+    color: #111;
+    margin-bottom: 1rem;
+}
+
+.advertiser-header p {
+    font-size: 1.2rem;
+    color: #111;
+}
+
+.advertiser-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.advertiser-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 2px solid #FFD700;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #FFD700;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #FFA500;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.btn-validate {
+    background: #FFD700;
+    color: #111;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.btn-validate:hover {
+    background: #FFA500;
+    transform: translateY(-2px);
+}
+
+.qr-validation {
+    display: none;
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.business-form {
+    display: none;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #FFD700;
+}
+
+.form-group {
+    margin: 20px 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #111;
+}
+
+.btn-publish {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #111;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn-publish:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Menú lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.menu-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-header h3 {
+    color: #111;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #111;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-content {
+    padding: 1rem 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #111;
+    font-weight: 600;
+}
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.menu-item.active {
+    background: rgba(255,255,255,0.3);
+    border-right: 3px solid #111;
+}
+
+.menu-item i {
+    font-size: 1.2rem;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background: #111;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger-menu:hover span {
+    background: #FFD700;
+}
+
+/* Estilos para el Footer */
+footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-background-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.footer-description {
+    font-size: 1rem;
+    color: #bdc3c7;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+    border-color: #FFD700;
+}
+
+/* Responsive para el footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 1rem 0;
+        margin-top: 1.5rem;
+    }
+    
+    .footer-content {
+        padding: 0 1rem;
+    }
+    
+    .footer-title {
+        font-size: 1.5rem;
+    }
+    
+    .footer-description {
+        font-size: 0.9rem;
+    }
+    
+    .footer-links {
+        gap: 0.8rem;
+    }
+    
+    .footer-link {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

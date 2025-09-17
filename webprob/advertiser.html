@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Anunciante - Ruta Amarilla</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="advertiser.css">
+</head>
+<body>
+    <!-- Vista de Anunciante -->
+    <div id="advertiserView" class="advertiser-view">
+        <div class="advertiser-header">
+            <button class="back-btn" onclick="showClientView()">
+                <i class="ri-arrow-left-line"></i> Volver a Cliente
+            </button>
+            <h1>Panel de Anunciante</h1>
+            <p>Publica tu negocio en Ruta Amarilla</p>
+        </div>
+
+        <div class="advertiser-content">
+            <h2>Crear tu Anuncio</h2>
+            
+            <div class="advertiser-form">
+                <h3>📋 Validar tu Código QR</h3>
+                <p>Ingresa tu código QR para continuar</p>
+                <input type="text" id="qr-code" placeholder="QR_1756165754023_6JU2K6DWKB" class="form-input">
+                <button onclick="validateQR()" class="btn-validate">Validar QR</button>
+                
+                <div id="qr-validation" class="qr-validation">
+                    ✅ Código válido - Expira en 364 días
+                </div>
+
+                <div id="business-form" class="business-form">
+                    <h3>🏢 Información del Negocio</h3>
+                    
+                    <div class="form-group">
+                        <label>Nombre del Negocio:</label>
+                        <input type="text" id="business-name" placeholder="Mi Boutique Elegante" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categoría:</label>
+                        <select id="business-category" class="form-input">
+                            <option>Selecciona una categoría</option>
+                            <option>Moda 👗</option>
+                            <option>Artesanía 🛠️</option>
+                            <option>Gastronomía 🍽️</option>
+                            <option>Servicios 🧰</option>
+                            <option>Salud 🏥</option>
+                            <option>Educación 📚</option>
+                            <option>Tecnología 💻</option>
+                            <option>Turismo ✈️</option>
+                            <option>Belleza 💅</option>
+                            <option>Inmobiliaria 🏠</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea id="business-description" placeholder="Describe tu negocio, productos o servicios..." rows="4" class="form-input"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dirección:</label>
+                        <input type="text" id="business-address" placeholder="Calle 123, Ciudad, País" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono:</label>
+                        <input type="tel" id="business-phone" placeholder="+1234567890" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="business-email" placeholder="contacto@miboutique.com" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website:</label>
+                        <input type="url" id="business-website" placeholder="https://www.miboutique.com" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Imagen del Negocio:</label>
+                        <input type="url" id="business-images" placeholder="https://ejemplo.com/imagen.jpg" class="form-input">
+                    </div>
+
+                    <button onclick="publishAd()" class="btn-publish">🚀 Publicar Anuncio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="advertiser.js"></script>
+</body>
+</html>
